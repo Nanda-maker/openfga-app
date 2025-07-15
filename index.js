@@ -16,17 +16,6 @@ app.use(express.json());
 app.use(express.static(path.resolve("./public")));
 app.use(authMiddleware);
 
-// Simple login endpoint for testing
-app.post("/login", (req, res) => {
-  const { username } = req.body;
-  if (!username) {
-    return res.status(400).json({ error: "Username is required" });
-  }
-  // In production, validate password here
-  const token = jwt.sign({ username }, "mysupersecret", { expiresIn: "1h" });
-  return res.json({ token });
-});
-
 app.get("/files", async (req, res) => {
   if (!req.user) return res.status(401).json({ error: "Please login" });
 
