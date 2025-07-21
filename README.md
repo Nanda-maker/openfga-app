@@ -14,11 +14,11 @@ git clone https://github.com/yourusername/openfga-demo.git
 cd openfga-demo
 
 # 2. Install dependencies
-pnpm install # or npm install
+npm install # or npm install
 
 # 3. Start everything (Node.js + OpenFGA + Postgres)
 docker compose up -d
-pnpm start # or npm start
+npm start # or npm start
 ```
 
 OpenFGA will be available at [http://localhost:8080](http://localhost:8080)
