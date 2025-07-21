@@ -1,5 +1,7 @@
 # 🔐 OpenFGA Node.js Authorization Demo
 
+**[📖 Technical Detail Document](https://code2tutorial.com/tutorial/d051545d-c902-4934-ba4e-e86740bdc276/index.md)**
+
 This project demonstrates how to implement **fine-grained, relationship-based access control** using [OpenFGA](https://openfga.dev) in a modern **Node.js** application.
 
 Inspired by real-world authorization use-cases from platforms like **Google Drive** and **GitHub**, this demo shows how to model complex access patterns with simplicity and scalability.
