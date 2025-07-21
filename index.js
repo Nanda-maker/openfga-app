@@ -37,7 +37,19 @@ app.post("/share-file", async (req, res) => {
   if (!req.user) return res.status(401).json({ error: "Please login" });
 
   const { id, username } = req.body;
+  // Check if the current user is the owner of the file
+  const checkResult = await fgaClient.check({
+    user: `user:${req.user.username}`,
+    relation: "owner",
+    object: `file:${id}`,
+  });
 
+  if (!checkResult.allowed) {
+    return res
+      .status(403)
+      .json({ error: "Only the owner can share this file." });
+  }
+  l;
   await fgaClient.write({
     writes: [
       {
@@ -84,6 +96,14 @@ app.post("/signup", (req, res) => {
   const token = jwt.sign({ username, email }, "mysupersecret");
 
   return res.json({ username, token });
+});
+
+// Expose available types and relations for clients
+app.get("/relations", (req, res) => {
+  res.json({
+    types: ["file"],
+    relations: ["owner", "viewer", "can_view"],
+  });
 });
 
 app.listen(PORT, () => {
